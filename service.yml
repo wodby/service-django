@@ -1,0 +1,38 @@
+name: django
+type: service
+from: python
+fromVersionConstraint: "^1.0.0"
+fromVersion: "1.0.0"
+icon: django
+title: Django
+labels:
+- django
+- python
+
+env:
+- name: GUNICORN_APP
+  value: myapp.wsgi:application
+- name: DJANGO_DEBUG
+  value: 'true'
+  envType: dev
+
+build:
+  dockerfile: Dockerfile
+  connect: true
+
+actions:
+- name: database_migrate
+  title: Run migrate
+  args:
+  - python
+  - manage.py
+  - migrate
+  type: post_deploy
+- name: collect_static
+  title: Collect static files
+  args:
+  - python
+  - manage.py
+  - collectstatic
+  - --no-input
+  type: post_deploy
