@@ -11,13 +11,26 @@ labels:
 env:
 - name: GUNICORN_APP
   value: myapp.wsgi:application
+- name: DJANGO_SECRET_KEY
+  value: '{{django_secret_key}}'
+  secret: true
 - name: DJANGO_DEBUG
   value: 'true'
   envType: dev
 
+tokens:
+- name: django_secret_key
+  generate:
+    regex: '[0-9a-f]{64}'
+
 build:
   dockerfile: Dockerfile
   connect: true
+  templates:
+  - name: django
+    title: Django boilerplate
+    repo: https://github.com/wodby/django-boilerplate
+    branch: main
 
 actions:
 - name: database_migrate
