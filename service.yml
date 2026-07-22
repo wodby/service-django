@@ -2,7 +2,7 @@ name: django
 type: service
 from: python
 fromVersionConstraint: "^1.0.0"
-fromVersion: "1.0.0"
+fromVersion: "1.0.1"
 title: Python (Django)
 labels:
 - django
