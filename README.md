@@ -9,10 +9,10 @@ configuration for Python (Django).
 - [Wodby service documentation](https://wodby.com/docs/2.0/services/)
 - [Service manifest reference](https://wodby.com/docs/2.0/services/template/)
 
-## Start with a template
+## Start with a boilerplate
 
-Use one of the source templates exposed by this service to start with
-compatible build configuration and Wodby CI:
+Use one of the boilerplates exposed by this service to start with compatible
+build configuration and Wodby CI:
 
 - [Django boilerplate](https://github.com/wodby/django-boilerplate)
 
@@ -27,7 +27,7 @@ compatible build configuration and Wodby CI:
 | Service name | `django` |
 | Type | Application service |
 | Inherits from | [`python`](https://github.com/wodby/service-python) with version constraint `^1.0.0` |
-| Application build | Git source connection enabled; Dockerfile: `Dockerfile`; starters: Django boilerplate |
+| Application build | Git source connection enabled; Dockerfile: `Dockerfile`; boilerplates: Django boilerplate |
 | Configuration | 1 generated or fixed tokens |
 | Operations | 2 actions |
 
