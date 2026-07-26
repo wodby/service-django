@@ -11,6 +11,8 @@ labels:
 env:
 - name: GUNICORN_APP
   value: myapp.wsgi:application
+- name: CELERY_APP
+  value: myapp
 - name: DJANGO_SECRET_KEY
   value: '{{django_secret_key}}'
   secret: true
@@ -18,10 +20,31 @@ env:
   value: 'true'
   envType: dev
 
+links:
+- name: db
+  env:
+  - name: DATABASE_URL
+    value: '{{link.database.url}}'
+    secret: true
+- name: redis
+  env:
+  - name: CELERY_BROKER_URL
+    value: 'redis://:{{link.tokens.password}}@{{link.host}}:{{link.port}}/0'
+    secret: true
+
 tokens:
 - name: django_secret_key
   generate:
     regex: '[0-9a-f]{64}'
+
+derivatives:
+- name: django-celery
+  icon: celery
+  title: Celery
+  args: ['celery', 'worker', '--loglevel=INFO']
+  type: service
+  default: true
+  required: false
 
 build:
   dockerfile: Dockerfile

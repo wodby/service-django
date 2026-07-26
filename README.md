@@ -40,6 +40,27 @@ A service is a reusable component and does not deploy by itself. The stack
 defines its links, settings, versions, resources, and relationship to the rest
 of the application.
 
+The inherited database link keeps the component `DB_*` variables for
+compatibility and also supplies a secret `DATABASE_URL`. Django boilerplates
+use the URL as the authoritative deployed connection while retaining the
+component variables as a fallback for older or custom applications.
+
+## Background jobs
+
+The `django-celery` derivative is selected by default. The standard Django
+stack makes Valkey required and supplies its persistent connection through the
+secret `CELERY_BROKER_URL` setting used by the boilerplate's Celery
+configuration. The inherited `REDIS_HOST`, `REDIS_PORT`, and `REDIS_PASSWORD`
+variables remain available for custom applications.
+
+The derivative uses Celery's `CELERY_APP` CLI variable, which defaults to the
+boilerplate's `myapp` package and can be overridden alongside `GUNICORN_APP`
+for custom Django project layouts.
+
+The broker is queue infrastructure rather than a disposable Django cache. The
+standard stack therefore uses persistence and a `noeviction` policy, and the
+boilerplate does not configure Django's cache to share the broker.
+
 ## Maintain a custom version
 
 1. Fork this repository.
