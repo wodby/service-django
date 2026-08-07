@@ -43,7 +43,6 @@ derivatives:
   title: Celery
   args: ['celery', 'worker', '--loglevel=INFO']
   type: service
-  default: true
   required: false
 
 build:

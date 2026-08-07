@@ -47,11 +47,13 @@ component variables as a fallback for older or custom applications.
 
 ## Background jobs
 
-The `django-celery` derivative is selected by default. The standard Django
-stack makes Valkey required and supplies its persistent connection through the
-secret `CELERY_BROKER_URL` setting used by the boilerplate's Celery
-configuration. The inherited `REDIS_HOST`, `REDIS_PORT`, and `REDIS_PASSWORD`
-variables remain available for custom applications.
+The Redis link and `django-celery` derivative are optional for custom stacks.
+Applications that do not enqueue background jobs can omit both. The standard
+Django stack explicitly selects the Celery derivative, makes Valkey required,
+and supplies its persistent connection through the secret
+`CELERY_BROKER_URL` setting used by the boilerplate's Celery configuration.
+The inherited `REDIS_HOST`, `REDIS_PORT`, and `REDIS_PASSWORD` variables remain
+available for custom applications.
 
 The derivative uses Celery's `CELERY_APP` CLI variable, which defaults to the
 boilerplate's `myapp` package and can be overridden alongside `GUNICORN_APP`
