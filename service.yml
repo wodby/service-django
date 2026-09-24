@@ -1,8 +1,8 @@
 name: django
 type: service
 from: python
-fromVersionConstraint: "^1.0.0"
-fromVersion: "1.0.12"
+fromVersionConstraint: "^1.1.0"
+fromVersion: "1.1.0"
 title: Python (Django)
 labels:
 - django
@@ -70,3 +70,6 @@ actions:
   - collectstatic
   - --no-input
   type: post_deploy
+
+workspace:
+  reload: watch
