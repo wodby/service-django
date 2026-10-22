@@ -2,7 +2,7 @@ name: django
 type: service
 from: python
 fromVersionConstraint: "^1.0.0"
-fromVersion: "1.1.2"
+fromVersion: "1.2.0"
 guidance: GUIDANCE.md
 title: Python (Django)
 labels:
@@ -52,6 +52,7 @@ build:
   boilerplates:
   - name: django
     title: Django boilerplate
+    optionVersionConstraint: ">=3.10 <3.15"
     repo: https://github.com/wodby/django-boilerplate
     branch: main
 

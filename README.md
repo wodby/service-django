@@ -16,6 +16,9 @@ build configuration and Wodby CI:
 
 - [Django boilerplate](https://github.com/wodby/django-boilerplate)
 
+The included boilerplate uses Django 5.2 and supports Python 3.10–3.14.
+Python 3.15 requires a connected application using a compatible Django release.
+
 ## Wodby stacks using this service
 
 - [Django application stack](https://github.com/wodby/stack-django)
