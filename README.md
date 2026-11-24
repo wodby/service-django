@@ -87,7 +87,7 @@ See the [service manifest reference](https://wodby.com/docs/2.0/services/templat
 
 ## Development workspaces
 
-The Python workspace runtime starts `GUNICORN_APP` with Gunicorn polling. Dependencies use the inherited locked preparation. Override `WORKSPACE_PYTHON_COMMAND` for a custom server. Database migrations and other post-deployment actions are not automatic workspace preparation.
+The Python workspace runtime starts `GUNICORN_APP` with Gunicorn polling. Dependencies use the inherited locked preparation. Override `WORKSPACE_PYTHON_COMMAND` for a custom server. Database migrations and other deployment actions are not automatic workspace preparation.
 
 Requires a runtime image declaring workspace contract version 1. Ordinary and development option tags must use matching revisions.
 
