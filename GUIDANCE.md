@@ -28,9 +28,11 @@ The service does not write Django settings. `settings.py` must build `DATABASES`
 
 The optional `django-celery` service runs `celery worker --loglevel=INFO` instead of Gunicorn. It needs `celery` among the dependencies and a Celery application in the package named by `CELERY_APP`. The broker comes from the Redis or Valkey link, as `CELERY_BROKER_URL`.
 
-## After every deployment
+## Before every rollout
 
-Wodby runs two commands for this service, in this order of declaration:
+Wodby runs two commands for this service in a job of the new version, before its pods are replaced. On the first deployment they run right after the install. If one fails, the deployment stops before the rollout. The previous version keeps serving until the new one is ready, and keeps serving if the deployment fails, so migrations must keep working with the previous version: add columns and tables first, remove or rename them in a later release.
+
+The commands, in this order of declaration:
 
 1. `python manage.py migrate`
 2. `python manage.py collectstatic --no-input`

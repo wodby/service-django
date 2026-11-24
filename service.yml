@@ -57,13 +57,15 @@ build:
     branch: main
 
 actions:
+# Runs before the new version rolls out, while the previous version keeps
+# serving, so migrations must keep working with the previous version.
 - name: database_migrate
   title: Run migrate
   args:
   - python
   - manage.py
   - migrate
-  type: post_deploy
+  type: pre_deploy
 - name: collect_static
   title: Collect static files
   args:
@@ -71,7 +73,7 @@ actions:
   - manage.py
   - collectstatic
   - --no-input
-  type: post_deploy
+  type: pre_deploy
 
 workspace:
   reload: watch
